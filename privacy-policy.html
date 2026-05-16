@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chính sách Quyền riêng tư – VN Admin Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #0d1117;
+      --bg-2:    #161b22;
+      --border:  #21262d;
+      --text-1:  #e6edf3;
+      --text-2:  #8b949e;
+      --accent:  #22d3ee;
+      --success: #3fb950;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-name { font-size: 16px; font-weight: 800; color: var(--text-1); }
+    .logo-sub  { font-size: 11px; color: var(--accent); margin-top: 1px; }
+
+    /* Hero */
+    .hero {
+      max-width: 760px;
+      margin: 48px auto 0;
+      padding: 0 24px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      background: rgba(34,211,238,0.08);
+      border: 1px solid rgba(34,211,238,0.2);
+      border-radius: 99px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero-meta {
+      font-size: 13px;
+      color: var(--text-2);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* Summary box */
+    .summary-box {
+      max-width: 760px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+    .summary-inner {
+      background: rgba(63,185,80,0.06);
+      border: 1px solid rgba(63,185,80,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 14px;
+    }
+    .summary-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .summary-title { font-size: 14px; font-weight: 700; color: var(--success); margin-bottom: 6px; }
+    .summary-text  { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+    /* Content */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-1);
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+
+    p { color: var(--text-2); font-size: 14px; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    .highlight { color: var(--text-1); font-weight: 600; }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-2);
+    }
+    ul li::before {
+      content: '›';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    /* Permission table */
+    .perm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+    .perm-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--bg-2);
+      color: var(--text-2);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .perm-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+      vertical-align: top;
+    }
+    .perm-table tr:last-child td { border-bottom: none; }
+    .perm-table tr:hover td { background: var(--bg-2); }
+    .perm-name {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      background: rgba(34,211,238,0.08);
+      border: 1px solid rgba(34,211,238,0.15);
+      border-radius: 4px;
+      padding: 2px 7px;
+      white-space: nowrap;
+    }
+
+    /* No collect badge */
+    .no-collect {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      background: rgba(63,185,80,0.08);
+      border: 1px solid rgba(63,185,80,0.2);
+      border-radius: 8px;
+      padding: 8px 14px;
+      margin-bottom: 14px;
+    }
+
+    /* Contact */
+    .contact-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-card a { color: var(--accent); }
+    .contact-label { font-size: 11px; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.4px; }
+    .contact-val   { font-size: 14px; font-weight: 600; color: var(--text-1); }
+
+    /* Footer */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-2);
+    }
+    footer strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-icon">
+      <svg width="22" height="22" viewBox="0 0 48 48" fill="none">
+        <path d="M24 8L38 16V32L24 40L10 32V16Z" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="24" cy="24" r="5" fill="white"/>
+        <line x1="24" y1="8"  x2="24" y2="19" stroke="white" stroke-width="1.5"/>
+        <line x1="38" y1="16" x2="28" y2="21" stroke="white" stroke-width="1.5"/>
+        <line x1="38" y1="32" x2="28" y2="27" stroke="white" stroke-width="1.5"/>
+        <line x1="24" y1="40" x2="24" y2="29" stroke="white" stroke-width="1.5"/>
+        <line x1="10" y1="32" x2="20" y2="27" stroke="white" stroke-width="1.5"/>
+        <line x1="10" y1="16" x2="20" y2="21" stroke="white" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-name">VN Admin Pro</div>
+      <div class="logo-sub">Tra cứu Hành chính Việt Nam 2025</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">📄 Văn bản pháp lý</div>
+  <h1>Chính sách<br>Quyền riêng tư</h1>
+  <div class="hero-meta">
+    <span>📅 Cập nhật: 01/06/2025</span>
+    <span>🌐 Áp dụng cho: VN Admin Pro Chrome Extension</span>
+    <span>❤️ Lucas &amp; Dad</span>
+  </div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-inner">
+    <div class="summary-icon">🛡️</div>
+    <div>
+      <div class="summary-title">Tóm tắt ngắn gọn</div>
+      <div class="summary-text">
+        VN Admin Pro <strong>không thu thập, không lưu trữ, không chia sẻ</strong> bất kỳ dữ liệu cá nhân nào của người dùng.
+        Mọi dữ liệu tra cứu đều được xử lý hoàn toàn trên thiết bị của bạn (local).
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- 1 -->
+  <div class="section">
+    <div class="section-num">Điều 1</div>
+    <h2>Thông tin về Extension</h2>
+    <p><span class="highlight">VN Admin Pro</span> là tiện ích mở rộng Chrome giúp tra cứu đơn vị hành chính Việt Nam sau sáp nhập theo Nghị quyết 202/2025/QH15. Extension cung cấp các tính năng:</p>
+    <ul>
+      <li>Tra cứu tỉnh thành, xã phường theo tên hoặc mã hành chính</li>
+      <li>Chuyển đổi địa chỉ cũ sang địa chỉ mới sau sáp nhập</li>
+      <li>Xác thực địa chỉ còn hợp lệ</li>
+      <li>Xem lịch sử sáp nhập đơn vị hành chính</li>
+    </ul>
+    <p>Phát triển bởi <span class="highlight">Lucas &amp; Dad</span>. Tài trợ bởi <span class="highlight">Tân Thanh Company</span>.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="section">
+    <div class="section-num">Điều 2</div>
+    <h2>Dữ liệu chúng tôi KHÔNG thu thập</h2>
+    <div class="no-collect">✓ Không thu thập dữ liệu cá nhân</div>
+    <p>Extension này <span class="highlight">không thu thập, không ghi lại, không truyền tải</span> bất kỳ thông tin cá nhân nào, bao gồm nhưng không giới hạn:</p>
+    <ul>
+      <li>Tên, email, số điện thoại hoặc thông tin định danh</li>
+      <li>Lịch sử duyệt web, URL các trang đã truy cập</li>
+      <li>Nội dung địa chỉ bạn nhập vào ô tìm kiếm</li>
+      <li>Vị trí địa lý</li>
+      <li>Thông tin tài khoản Google hoặc Chrome</li>
+      <li>Dữ liệu tài chính hoặc thẻ tín dụng</li>
+    </ul>
+  </div>
+
+  <!-- 3 -->
+  <div class="section">
+    <div class="section-num">Điều 3</div>
+    <h2>Dữ liệu được lưu trên thiết bị (Local)</h2>
+    <p>Extension sử dụng <span class="highlight">chrome.storage.local</span> để lưu trữ trên thiết bị của bạn:</p>
+    <ul>
+      <li>Dữ liệu hành chính công khai: 34 tỉnh thành, ~3.321 xã phường (tải từ HuggingFace Dataset)</li>
+      <li>Thời điểm đồng bộ dữ liệu lần cuối</li>
+      <li>Thông số kỹ thuật không định danh (số lần hiển thị thông báo)</li>
+    </ul>
+    <p>Dữ liệu này <span class="highlight">chỉ tồn tại trên máy bạn</span>, không được gửi về server của chúng tôi. Bạn có thể xóa hoàn toàn bằng cách gỡ cài đặt extension.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section">
+    <div class="section-num">Điều 4</div>
+    <h2>Giải thích các quyền (Permissions)</h2>
+    <table class="perm-table">
+      <thead>
+        <tr>
+          <th>Quyền</th>
+          <th>Mục đích sử dụng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="perm-name">storage</span></td>
+          <td>Lưu ~3.300 đơn vị hành chính vào local storage để tra cứu offline nhanh, không cần tải lại mỗi lần mở</td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">alarms</span></td>
+          <td>Lên lịch tự động làm mới dữ liệu hành chính mỗi 7 ngày, đảm bảo thông tin luôn cập nhật</td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">tabs</span></td>
+          <td>Mở giao diện tra cứu trong tab mới khi người dùng nhấn icon extension trên thanh công cụ</td>
+        </tr>
+        <tr>
+          <td><span class="perm-name">host_permissions</span><br><small style="color:var(--text-2)">datasets-server.huggingface.co</small></td>
+          <td>Tải dữ liệu hành chính công khai từ HuggingFace Dataset API. Không gửi dữ liệu người dùng đến domain này</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5 -->
+  <div class="section">
+    <div class="section-num">Điều 5</div>
+    <h2>Kết nối mạng (Remote Code &amp; API)</h2>
+    <p>Extension kết nối đến <span class="highlight">datasets-server.huggingface.co</span> để tải bộ dữ liệu hành chính mã nguồn mở:</p>
+    <ul>
+      <li>Dataset: <strong>tmquan/sapnhap-bando-vn</strong> — dữ liệu công khai, CC-BY-NC 4.0</li>
+      <li>Chỉ tải về, không gửi dữ liệu người dùng đến HuggingFace</li>
+      <li>Dữ liệu được cache 7 ngày để giảm thiểu số lần kết nối mạng</li>
+    </ul>
+    <p>Ngoài HuggingFace, extension <span class="highlight">không kết nối đến bất kỳ server nào khác</span> của nhà phát triển.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section">
+    <div class="section-num">Điều 6</div>
+    <h2>Chia sẻ dữ liệu với bên thứ ba</h2>
+    <p>Chúng tôi <span class="highlight">không bán, không cho thuê, không chia sẻ</span> bất kỳ dữ liệu nào với bên thứ ba vì đơn giản: chúng tôi không có dữ liệu người dùng để chia sẻ.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section">
+    <div class="section-num">Điều 7</div>
+    <h2>Trẻ em</h2>
+    <p>Extension này không hướng đến và không thu thập thông tin từ trẻ em dưới 13 tuổi. Extension chỉ cung cấp thông tin hành chính công khai, không có nội dung không phù hợp.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section">
+    <div class="section-num">Điều 8</div>
+    <h2>Thay đổi chính sách</h2>
+    <p>Nếu chính sách này thay đổi, chúng tôi sẽ cập nhật ngày ở đầu trang và thông báo qua mô tả trên Chrome Web Store. Việc tiếp tục sử dụng extension sau khi thay đổi đồng nghĩa với việc bạn chấp nhận chính sách mới.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section">
+    <div class="section-num">Điều 9</div>
+    <h2>Liên hệ</h2>
+    <p>Nếu có câu hỏi về chính sách này, vui lòng liên hệ:</p>
+    <div class="contact-card">
+      <div>
+        <div class="contact-label">Nhà phát triển</div>
+        <div class="contact-val">Lucas &amp; Dad</div>
+      </div>
+      <div>
+        <div class="contact-label">Tài trợ</div>
+        <div class="contact-val">Tân Thanh Company</div>
+      </div>
+      <div>
+        <div class="contact-label">Nguồn dữ liệu</div>
+        <div class="contact-val">
+          <a href="https://huggingface.co/datasets/tmquan/sapnhap-bando-vn" target="_blank">
+            HuggingFace – tmquan/sapnhap-bando-vn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>VN Admin Pro</strong> · Chính sách Quyền riêng tư · Cập nhật 01/06/2025<br>
+  <span style="opacity:0.5;font-size:11px;margin-top:4px;display:block">❤️ Lucas &amp; Dad · 🏢 Tân Thanh Company</span>
+</footer>
+
+</body>
+</html>
